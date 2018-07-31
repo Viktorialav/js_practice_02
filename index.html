@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script>
+		var decision = prompt("Вы будете проводить математические операции c: 1. Числами; 2. Массивами?");
+		var arr1 = [];
+		var arr2 = [];
+		var cashNumber = [];
+		var maxArr = arr1;
+		var minArr = arr2;
+		var x;
+		var y;
+
+		if(decision == 1) {
+			var lenghCashNumber = +prompt("Введите количество массива", "1");
+
+			x = +prompt("Введите значение для х");
+			y = +prompt("Введите значение для y");
+
+			var operation = prompt("Введите операцию: +, -, *, / ");
+
+			add = function (x, y) {
+				for (i = 0; i < lenghCashNumber; i++) {
+					var answer = confirm("Надо ли запомнить результат?");
+					if (answer) {
+						cashNumber.push(x + y);
+					}
+					x = +prompt("Введите значение для х");
+					y = +prompt("Введите значение для y");
+					if (!answer) {
+						--i;
+					}
+				}
+			}
+			sub = function (x, y) {
+				for (i = 0; i < lenghCashNumber; i++) {
+					var answer = confirm("Надо ли запомнить результат?");
+					if (answer) {
+						lenghCashNumber.push(x - y);
+					}
+					x = +prompt("Введите значение для х");
+					y = +prompt("Введите значение для y");
+					if (!answer) {
+						--i;
+					}
+				}
+			}
+			mul = function (x, y) {
+				for (i = 0; i < lenghCashNumber; i++) {
+					var answer = confirm("Надо ли запомнить результат?");
+					if (answer) {
+						lenghCashNumber.push(x * y);
+					}
+					x = +prompt("Введите значение для х");
+					y = +prompt("Введите значение для y");
+					if (!answer) {
+						--i;
+					}
+				}
+			}
+			div = function (x, y) {
+				for (i = 0; i < lenghCashNumber; i++) {
+					var asnwer = confirm("Надо ли запомнить результат?");
+					if (answer) {
+						lenghCashNumber.push(x / y);
+					}
+					if (y == 0) {
+						document.write("Делить на 0 нельзя!");
+					}
+					x = +prompt("Введите значение для х");
+					y = +prompt("Введите значение для y");
+					if (!answer) {
+						--i;
+					}
+				}
+			}
+
+			switch (operation) {
+				case "+":
+					add(arr1, arr2);
+					break;
+				case "-":
+					sub(arr1, arr2);
+					break;
+				case "*":
+					mul(arr1, arr2);
+					break;
+				case "/":
+					div(arr1, arr2);
+					break;
+				default: 
+					document.write("Ошибка!");
+			}
+			document.write(cashNumber.join(" | ") + "<br/>");
+
+		}
+		else if(decision == 2) {
+			var lengtharr1 = +prompt("Введите количество первого массива", "1");
+
+			for (i = 0; i < lengtharr1; i++) {
+				arr1[i] = +prompt("Введите значения для первого массива");
+				cashNumber.push(arr1[i]);
+			}
+
+			var lengtharr2 = +prompt("Введите количество первого массива", "1");
+
+			for (j = 0; j < lengtharr2; j++) {
+				arr1[j] = +prompt("Введите значения для первого массива");
+				cashNumber.push(arr2[j]);
+			}
+
+			var operation = prompt("Введите операцию: +, -, *, / ");
+
+			if (arr2.length > arr1.length) {
+                var maxArr = arr2;
+                var minArr = arr1;
+            }
+
+            var res = new Array(maxArr.length);
+
+			add = function(arr1, arr2) {
+				for (i = 0; i < lengtharr1; i++) {
+					if (i < minArr.length) {
+						res[i] = maxArr[i] + minArr[i];
+					}
+					else {
+						res[i] = maxArr[i];
+					}
+				}
+			}
+			sub = function(arr1, arr2) {
+				for (i = 0; i < lengtharr1; i++) {
+					if (i < minArr.length) {
+						res[i] = maxArr[i] - minArr[i];
+					}
+					else {
+						res[i] = maxArr[i];
+					}
+				}
+			}
+			mul = function(arr1, arr2) {
+				for (i = 0; i < lengtharr1; i++) {
+					if (i < minArr.length) {
+						res[i] = maxArr[i] * minArr[i];
+					}
+					else {
+						res[i] = maxArr[i];
+					}
+				}
+			}
+			div = function(arr1, arr2) {
+				for (i = 0; i < lengtharr1; i++) {
+					if (i < minArr.length) {
+						res[i] = maxArr[i] / minArr[i];
+					}
+					else {
+						res[i] = maxArr[i];
+					}
+				}
+			}
+			switch (operation) {
+				case "+":
+					add(arr1, arr2);
+					break;
+				case "-":
+					sub(arr1, arr2);
+					break;
+				case "*":
+					mul(arr1, arr2);
+					break;
+				case "/":
+					div(arr1, arr2);
+					break;
+				default: 
+					document.write("Ошибка!");
+			}
+			document.write(arr1.join(" | ") + "<br/>");
+            document.write(arr2.join(" | ") + "<br/>");
+            document.write(res.join(" | ") + "<br/>");
+		}
+		else {
+			document.write("Ошибка!");
+		}
+	</script>
+</body>
+</html>
